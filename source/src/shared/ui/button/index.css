@@ -1,0 +1,20 @@
+.button {
+    padding: 14px 70px;
+    color: #85DA97;
+    font-size: 1.125rem;
+    font-weight: 300;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.button_border {
+    border: solid 1px #85DA97!important;
+    border-radius: 100px;
+    transition: .5s linear;
+}
+
+.button_border:hover {
+    background-color: #85DA97;
+    color: #fafafa;
+}

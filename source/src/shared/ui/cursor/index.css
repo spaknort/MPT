@@ -1,0 +1,25 @@
+.cursor {
+    width: 1px;
+    height: 100%;
+    min-height: 20px;
+    margin: 0 1px;
+    animation: cursorAni .8s linear alternate infinite;
+}
+
+.cursor_default {
+    background-color: #1F323D;
+}
+
+.cursor_dark {
+    background-color: #fafafa;
+}
+
+@keyframes cursorAni {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        cursor: 1;
+    }
+}

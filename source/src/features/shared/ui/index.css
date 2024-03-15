@@ -1,0 +1,13 @@
+.shared {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.shared__path_default {
+    fill: #A5A2A2;
+}
+
+.shared__path_dark {
+    fill: #e6e6e6;
+}

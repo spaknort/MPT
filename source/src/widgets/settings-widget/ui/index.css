@@ -1,0 +1,13 @@
+.settings-widget__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 24px;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+}
+
+.settings-widget__buttons {
+    margin-top: 40px;
+}

@@ -1,0 +1,17 @@
+.number-of-points {
+    display: flex;
+    align-items: center;
+}
+
+.number-of-points__count {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.number-of-points__count_default {
+    color: #646363;
+}
+
+.number-of-points__count_dark {
+    color: #e6e6e6;
+}

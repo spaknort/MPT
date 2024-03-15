@@ -1,0 +1,72 @@
+.trigonometric-function {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.trigonometric-function__name {
+    font-size: 1.4rem;
+}
+
+.trigonometric-function__name_default {
+    color: #1F323D;
+}
+
+.trigonometric-function__name_dark {
+    color: #fafafa;
+}
+
+.trigonometric-function__value {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    border: dashed 1.5px #7c8387;
+    padding: 14px 14px 8px 8px;    
+}
+
+.trigonometric-function__value_default {
+    color: #1F323D;
+}
+
+.trigonometric-function__value_dark {
+    color: #fafafa;
+}
+
+.trigonometric-function__value::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    transform: translateY(-15%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.trigonometric-function__value_default::after {
+    border: solid 1px #1F323D;
+}
+
+.trigonometric-function__value_dark::after {
+    border: solid 1px #fafafa;
+}
+
+.trigonometric-function__value > p {
+    font-size: 1.1rem;
+}
+
+.trigonometric-function__value_arcsin,
+.trigonometric-function__value_arccos,
+.trigonometric-function__value_arctg,
+.trigonometric-function__value_arcctg {
+    padding: 8px!important;
+}
+
+.trigonometric-function__value_arcsin::after,
+.trigonometric-function__value_arccos::after,
+.trigonometric-function__value_arctg::after,
+.trigonometric-function__value_arcctg::after {
+    display: none!important;
+}

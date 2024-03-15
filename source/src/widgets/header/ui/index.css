@@ -1,0 +1,21 @@
+.header {
+    width: 100%;
+}
+
+.header_dark {
+    background-color: #1F323D;
+}
+
+.header_standart {
+    background-color: #E6E6E6;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px 44px;
+    border-bottom: solid 1px rgba(82, 82, 82, 0.25);
+}
+

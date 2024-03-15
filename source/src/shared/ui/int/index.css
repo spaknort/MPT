@@ -1,0 +1,13 @@
+.int {
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding-right: 2px;
+}
+
+.int_default {
+    color: #1F323D;
+}
+
+.int_dark {
+    color: #fafafa;
+}

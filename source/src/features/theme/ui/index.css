@@ -1,0 +1,36 @@
+.theme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12px;
+    cursor: pointer;
+}
+
+.theme__block_default {
+    background-color: #85DA97;
+    width: 90%;
+    height: 300px;
+    border-radius: 15px;
+}
+
+.theme__block_dark {
+    background-color: #1D2E38;
+    width: 90%;
+    height: 300px;
+    border-radius: 15px;
+}
+
+.theme__block_pink {
+    background-color: #DE6F9E;
+    width: 90%;
+    height: 300px;
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 426px) {
+    .theme__block_default,
+    .theme__block_dark,
+    .theme__block_pink {
+        width: 100%;
+    }
+}

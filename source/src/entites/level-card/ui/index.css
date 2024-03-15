@@ -1,0 +1,57 @@
+.level-cart {
+    width: 100%;
+    padding: 20px 28px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.level-cart_default {
+    background-color: #C6CDC9;
+}
+
+.level-cart_dark {
+    background-color: #2A4352;
+}
+
+.level-cart_active {
+    background-color: #85DA97;
+}
+
+.level-cart__text {
+    width: 80%;
+}
+
+.level-cart__price,
+.level-cart__solved-count,
+.level-cart__title {
+    font-weight: 300;
+    color: #fafafa;
+}
+
+.level-cart__price {
+    font-size: 1rem;
+}
+
+.level-cart__solved-count {
+    font-size: 1rem;
+}
+
+.level-cart__title {
+    width: 230px;
+    font-size: 1.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+}
+
+.level-cart__span_default {
+    color: #1F323D;
+}
+
+.level-cart__span_dark {
+    color: #000;
+}

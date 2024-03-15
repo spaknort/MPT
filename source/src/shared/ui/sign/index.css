@@ -1,0 +1,15 @@
+.sign {
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: center;
+    margin-right: 3px;
+    z-index: 2;
+}
+
+.sign_default {
+    color: #1F323D;
+}
+
+.sign_dark {
+    color: #fafafa;
+}

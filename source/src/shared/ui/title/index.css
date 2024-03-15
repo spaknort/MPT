@@ -1,0 +1,19 @@
+.title {
+    font-size: 2.3rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.title_def {
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.title_standart {
+    color: #646363;
+}
+
+.title_dark {
+    color: #e6e6e6;
+}

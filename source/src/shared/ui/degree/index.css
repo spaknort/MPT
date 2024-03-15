@@ -1,0 +1,52 @@
+.degree {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 5px 13px 5px 5px;
+}
+
+.degree__exponent {
+    transform: translateX(8px);
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.degree__exponent > span > p {
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.degree__exponent_default > span > p {
+    color: #1F323D;
+}
+
+.degree__exponent_dark > span > p {
+    color: #fafafa;
+}
+
+.degree__base,
+.degree__exponent {
+    display: flex;
+    align-items: center;
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+}
+
+.degree__base {
+    min-width: 35px;
+    min-height: 35px;
+}
+
+.degree__base > span > p {
+    color: #1F323D;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.degree__base_default > span > p {
+    color: #1F323D;
+}
+
+.degree__base_dark > span > p {
+    color: #fafafa;
+}

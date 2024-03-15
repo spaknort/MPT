@@ -1,0 +1,4 @@
+.chartdiv {
+    width: 75%;
+    height: calc(100vh - 90px);
+}

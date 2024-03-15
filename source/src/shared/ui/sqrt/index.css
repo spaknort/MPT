@@ -1,0 +1,61 @@
+.sqrt {
+    min-width: 50px;
+    min-height: 40px;
+    position: relative;
+    z-index: 3;
+}
+
+.sqrt__base {
+    position: absolute;
+    left: 28px;
+    top: 53%;
+    min-width: 35px;
+    min-height: 35px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    transform: translateY(-50%);
+    padding: 8px;
+    border: dashed 1.5px #7c8387;
+}
+
+.sqrt__base > span > p {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.sqrt__base_default > span > p {
+    color: #1F323D;
+}
+
+.sqrt__base_dark > span > p {
+    color: #fafafa;
+}
+
+.sqrt__exponent {
+    position: absolute;
+    left: 1px;
+    top: 25%;
+    z-index: 1;
+    min-width: 12px;
+    min-height: 15px;
+    display: flex;
+    transform: translateY(-50%);
+    padding: 3px;
+    border: dashed 1.5px #7c8387;
+    background-color: transparent;
+}
+
+.sqrt__exponent > span > p {
+    color: #1F323D;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.sqrt__exponent_default > span > p {
+    color: #1F323D;
+}
+
+.sqrt__exponent_dark > span > p {
+    color: #fafafa;
+}

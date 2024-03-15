@@ -1,0 +1,11 @@
+.parenthesis {
+    width: 6px;
+}
+
+.parenthesis_default > path {
+    fill: #1F323D;
+}
+
+.parenthesis_dark > path {
+    fill: #fafafa;
+}

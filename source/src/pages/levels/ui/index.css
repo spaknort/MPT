@@ -1,0 +1,32 @@
+#root {
+    min-height: 100vh;
+    height: auto;
+}
+
+.levels {
+    height: 100%;
+}
+
+.levels_dark {
+    background-color: #1F323D;
+}
+
+.levels_default {
+    background-color: #fafafa;
+}
+
+.levels__block,
+.levels__inner {
+    width: 100%;
+    height: 100%;
+}
+
+.levels__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+}

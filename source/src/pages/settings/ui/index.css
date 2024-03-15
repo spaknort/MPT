@@ -1,0 +1,12 @@
+.settings_container {
+    width: 100%;
+    height: 100%;
+}
+
+.settings_container_dark {
+    background-color: #1F323D;
+}
+
+.settings_container_default {
+    background-color: #fafafa;
+}

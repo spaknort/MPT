@@ -1,0 +1,3 @@
+export enum InfoAboveResultAction {
+    SET_VALUE_FOR_INFO_ABOVE_RESULT = 'SET_VALUE_FOR_INFO_ABOVE_RESULT'
+}

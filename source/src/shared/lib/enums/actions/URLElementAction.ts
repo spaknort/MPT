@@ -1,0 +1,3 @@
+export enum URLElementAction {
+    CHANGE_URL_ELEMENT_STATE = 'CHANGE_URL_ELEMENT_STATE'
+}

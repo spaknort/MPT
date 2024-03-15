@@ -1,0 +1,26 @@
+.decimal-logarithm {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.decimal-logarithm__name {
+    font-size: 1.4rem;
+}
+
+.decimal-logarithm__value {
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.decimal-logarithm__name_default,
+.decimal-logarithm__value_default > span > p {
+    color: #1F323D;
+}
+
+.decimal-logarithm__name_dark,
+.decimal-logarithm__value_dark {
+    color: #fafafa;
+}

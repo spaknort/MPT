@@ -1,0 +1,13 @@
+.arrow {
+    width: 23px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.arrow__path_default {
+    fill: #A5A2A2;
+}
+
+.arrow__path_dark {
+    fill: #e6e6e6;
+}

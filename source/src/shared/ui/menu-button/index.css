@@ -1,0 +1,27 @@
+.menu-button {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.menu-button__line {
+    width: 100%;
+    height: 1.5px;
+    transition: .5s linear;
+}
+
+.menu-button__line_default {
+    background-color: #A5A2A2;
+}
+
+.menu-button__line_dark {
+    background-color: #fafafa;
+}
+
+.menu-button:hover > .menu-button__line:nth-child(1),
+.menu-button:hover > .menu-button__line:nth-child(3) {
+    transform: translateX(-10px);
+}

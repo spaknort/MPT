@@ -1,0 +1,27 @@
+.natural-logarithm {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.natural-logarithm__name {
+    font-size: 1.4rem;
+}
+
+.natural-logarithm__name_default,
+.natural-logarithm__value_default > span > p {
+    color: #1F323D;
+}
+
+.natural-logarithm__name_dark,
+.natural-logarithm__value_dark > span > p {
+    color: #fafafa;
+}
+
+.natural-logarithm__value {
+    font-size: 1.1rem;
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+    min-width: 22px;
+    min-height: 22px;
+}

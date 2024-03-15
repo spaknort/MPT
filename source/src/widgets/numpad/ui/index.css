@@ -1,0 +1,17 @@
+.numpad {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.numpad__inner {
+    width: 62%;
+    margin: 0 auto;
+    position: relative;
+}
+
+@media screen and (max-width: 426px) {
+    .numpad__inner {
+        width: 90%;
+    }
+}

@@ -1,0 +1,27 @@
+.module {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    height: max-content;
+}
+
+.module__line {
+    width: 1.5px;
+    min-height: 30px;
+    height: 100%;
+}
+
+.module__line_default {
+    background-color: #1F323D;
+}
+
+.module__line_dark {
+    background-color: #fafafa;
+}
+
+.module__value {
+    min-width: 25px;
+    min-height: 25px;
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+}

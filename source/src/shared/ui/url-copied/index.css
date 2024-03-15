@@ -1,0 +1,39 @@
+.text-copied {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 30px;
+    background-color: rgba(31, 50, 61, .4);
+    border-radius: 100px;
+    color: #e6e6e6;
+    font-weight: 400;
+    z-index: 6;
+    column-gap: 10px;
+    background-color: #17242b;
+    transition: .5s linear;
+}
+
+.text-copied_true {
+    opacity: 1;
+    visibility: visible;
+}
+
+.text-copied_false {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.text-copied__btn {
+    background-color: transparent;
+    border-left: solid 1px #fafafa!important;
+    border: none;
+    color: #e6e6e6;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 0 0 0 10px;
+    cursor: pointer;
+}

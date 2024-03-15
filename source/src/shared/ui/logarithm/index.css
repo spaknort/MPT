@@ -1,0 +1,64 @@
+.logarithm {
+    display: flex;
+    align-items: center;
+}
+
+.logarithm__name {
+    font-size: 1.4rem;
+}
+
+.logarithm__name_default {
+    color: #1F323D;
+}
+
+.logarithm__name_dark {
+    color: #fafafa;
+}
+
+.logarithm__base {
+    transform: translateY(15px);
+    margin-left: 3px;
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+    min-width: 15px;
+    min-height: 15px;
+}
+
+.logarithm__base > span > p {
+    font-size: .9rem;
+}
+
+.logarithm__base_default > span > p {
+    color: #1F323D;
+}
+
+.logarithm__base_dark > span > p {
+    color: #fafafa;
+}
+
+.logarithm__base > span,
+.logarithm__value > span {
+    display: flex;
+    align-items: center;
+}
+
+.logarithm__value {
+    font-size: 1.1rem;
+    margin-left: 5px;
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+    min-width: 22px;
+    min-height: 22px;
+}
+
+.logarithm__value_default > span > p {
+    color: #1F323D;
+}
+
+.logarithm__value_dark > span > p {
+    color: #fafafa;
+}
+
+.logarithm__value > span > p {
+    font-size: 1.1rem;
+}

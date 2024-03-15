@@ -1,0 +1,22 @@
+.info-above-example {
+    font-size: 1.37rem;
+    font-weight: 400;
+    transition: .5s linear;
+}
+
+.info-above-example_true {
+    color: #85DA97;
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-above-example_false {
+    color: #E09F9F;
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-above-example_null {
+    opacity: 0;
+    visibility: hidden;
+}

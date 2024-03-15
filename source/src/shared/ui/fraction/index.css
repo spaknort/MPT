@@ -1,0 +1,46 @@
+.fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 6px;
+    margin: 0 15px;
+}
+
+.fraction__numenator,
+.fraction__denominator {
+    display: flex;
+    align-items: center;
+    min-width: 25px;
+    min-height: 25px;
+    border: dashed 1.5px #7c8387;
+    padding: 8px;
+}
+
+.fraction__numenator > span > p,
+.fraction__denominator > span > p {
+    color: #1F323D;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.fraction__numenator_default > span > p {
+    color: #1F323D;
+}
+
+.fraction__numenator_dark > span > p,
+.fraction__denominator_dark > span > p {
+    color: #fafafa;
+}
+
+.fraction__line {
+    width: 130%;
+    height: 1px;
+}
+
+.fraction__line_default {
+    background-color: #7c8387;
+}
+
+.fraction__line_dark {
+    background-color: #fafafa;
+}

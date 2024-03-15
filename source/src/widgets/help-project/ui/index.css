@@ -1,0 +1,25 @@
+.help-project {
+    height: 100%;
+}
+
+.help-project_default {
+    background-color: #e6e6e6;
+}
+
+.help-project_dark {
+    background-color: #1F323D;
+}
+
+.help-project__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+    padding: 40px;
+}
+
+.help-project__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
