@@ -17,7 +17,7 @@ import { stateHaveSign } from "../lib/helpers/stateHaveSign"
 import { addElementInExample } from "../lib/helpers/addElementInExample"
 import { Dispatch, UnknownAction } from "redux"
 import { deleteElementInExample } from "../lib/helpers/deleteElementInExample"
-import { getStateWithOutCursor } from "../lib/helpers/getStateWithOutCursor"
+import { getStateWithOutCursor } from "@/shared/lib/helpers/getStateWithOutCursor"
 
 interface NumpadNumbersProps {
     isVisible: boolean,

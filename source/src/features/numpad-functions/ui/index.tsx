@@ -1,10 +1,9 @@
-import React, { Dispatch, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import NumpadButton from "../../../shared/ui/numpad-button"
 import { ExampleTypes } from "../../../shared/lib/enums/ExampleTypes"
 import { useDispatch, useSelector } from "react-redux"
 import { MainExampleAction } from "../../../shared/lib/enums/actions/MainExampleAction"
 import { NumpadColor } from "../../../shared/lib/enums/NumpadColor"
-import { IndexForElementAction } from "../../../shared/lib/enums/actions/IndexForElementAction"
 import { IFRACTION } from "../../../shared/lib/interfaces/examples/IFRACTION"
 import SVGSelector from "./svg-selector"
 import { SVGIconsID } from "../../../shared/lib/enums/SVGIconsID"
@@ -18,6 +17,8 @@ import './index.css'
 import { processingUserResponse } from "../../../widgets/numpad/lib/helpers/processingUserResponse"
 import { lastSymbolIsParenthesis } from "../lib/helpers/lastSymbolIsParenthesis"
 import { useTypedSelector } from "../../../shared/lib/hooks/useTypedSelector"
+import { getStateWithOutCursor } from "@/shared/lib/helpers/getStateWithOutCursor"
+import { addElement } from "../lib/helpers/addElement"
 
 interface NumpadFunctionsProps {
     isVisible: boolean,
@@ -67,122 +68,54 @@ export const NumpadFunctions: React.FC<NumpadFunctionsProps> = ({ isVisible, pag
             {onClick: () => {}, color: NumpadColor.GREEN, value: 'OK'}
         ]
     
-    let itemCount = 200
-
     useEffect(() => {
-        const data = getElementForInsertData(exampleData, focusElement)
+        const data = getStateWithOutCursor(getElementForInsertData(exampleData, focusElement))
 
-        // if (!stateIsEmpty(data)) {
-        //     setFunctionState(false);
-        //     (!lastSymbolIsSign(data) && !lastSymbolIsParenthesis(data)) ? setFunctionState(true): setFunctionState(false)
-        // }
-        // else setFunctionState(false)
+        if (!stateIsEmpty(data)) {
+            setFunctionState(false);
+            (!lastSymbolIsSign(data) && !lastSymbolIsParenthesis(data)) ? setFunctionState(true): setFunctionState(false)
+        }
+        else setFunctionState(false)
     }, [exampleData, focusElement])
 
-    function addElement (item: any) {
-        if (focusElement !== null) {
-            dispatch({
-                type: MainExampleAction.INSERT_ELEMENT_IN_EXAMPLE_BY_INDEX,
-                data: item,
-                indexOfElementInserted: Number(indexForElementInserted),
-                placeOfElementInserted: placeForElementInserted
-            })
-        }
-
-        else dispatch({ type: MainExampleAction.INSERT_ELEMENT_IN_EXAMPLE, data: item })
-        
-        dispatch({ type: IndexForElementAction.INDEX_INCREMENT })
-    }
-
-    function addSQRTOrDegree (
-        type: ExampleTypes,
-        exponent = [],
-        base = []
-    ) {
-        const element = {
-            type,
-            exponent,
-            base,
-            index: indexForElement
-        }
-
-        addElement(element)
+    function addSQRTOrDegree (type: ExampleTypes, exponent = [], base = []) {
+        const element = { type, exponent, base, index: indexForElement }
+        addElement(element, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addTrigonometricFunction (type: ExampleTypes, value = []) {
-        const trigonometricFunction = {
-            type,
-            value,
-            index: indexForElement
-        }
-
-        addElement(trigonometricFunction)
+        const trigonometricFunction = { type, value, index: indexForElement }
+        addElement(trigonometricFunction, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
-    function addFraction (
-        type: ExampleTypes,
-        numenator = [],
-        denominator = []
-    ) {
-        const fraction: IFRACTION = {
-            type,
-            numenator,
-            denominator,
-            index: indexForElement
-        }
-
-        addElement(fraction)
+    function addFraction (type: ExampleTypes, numenator = [], denominator = []) {
+        const fraction: IFRACTION = { type, numenator, denominator, index: indexForElement }
+        addElement(fraction, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addLogarithm (type: ExampleTypes, base = [], value = []) {
-        const logarithm: ILOGARITHM = {
-            type,
-            base,
-            value,
-            index: indexForElement
-        }
-
-        addElement(logarithm)
+        const logarithm: ILOGARITHM = { type, base, value, index: indexForElement }
+        addElement(logarithm, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addNaturalLogarithm (type: ExampleTypes, value = []) {
-        const ln = {
-            type,
-            value,
-            index: indexForElement
-        }
-
-        addElement(ln)
+        const ln = { type, value, index: indexForElement }
+        addElement(ln, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addDecimicalLogarithm (type: ExampleTypes, value = []) {
-        const lg = {
-            type,
-            value,
-            index: indexForElement
-        }
-
-        addElement(lg)
+        const lg = { type, value, index: indexForElement }
+        addElement(lg, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addParenthesis (type: ExampleTypes, value: string) {
-        const parenthesis: IPARENTHESIS = {
-            type,
-            value,
-            index: indexForElement
-        }
-
-        addElement(parenthesis)
+        const parenthesis: IPARENTHESIS = { type, value, index: indexForElement }
+        addElement(parenthesis, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addModule (type: ExampleTypes, value = []) {
-        const module: IMODULE = {
-            type,
-            value,
-            index: indexForElement
-        }
-
-        addElement(module)
+        const module: IMODULE = { type, value, index: indexForElement }
+        addElement(module, focusElement, indexForElementInserted, placeForElementInserted, dispatch)
     }
 
     function addOpenParenthesis(type: ExampleTypes) { addParenthesis(type, '(') }
@@ -193,16 +126,15 @@ export const NumpadFunctions: React.FC<NumpadFunctionsProps> = ({ isVisible, pag
     return (
         <div className={"numpad__functions numpad__functions_" + ((!isVisible) ? 'visible': 'hidden')}>
             {
-                numpadButtonsData.map(item => {
-                    itemCount++
+                numpadButtonsData.map((item, index) => {
                     if (item.value !== 'OK') {
-                        if (item.children !== undefined) return <NumpadButton key={itemCount} isDisabled={item.isDisabled} onClick={() => item.onClick(item.type)} >{ item.children as React.ReactNode }</NumpadButton>
-                        else return <NumpadButton key={itemCount} isDisabled={item.isDisabled} onClick={() => item.onClick(item.type)} value={item.value} color={item.color} />
+                        if (item.children !== undefined) return <NumpadButton key={index} isDisabled={item.isDisabled} onClick={() => item.onClick(item.type)} >{ item.children as React.ReactNode }</NumpadButton>
+                        else return <NumpadButton key={index} isDisabled={item.isDisabled} onClick={() => item.onClick(item.type)} value={item.value} color={item.color} />
                     }
                     else {
                         return <NumpadButton 
                             onClick={() => processingUserResponse(exampleData, indexForElement, page, dispatch)}
-                            isDisabled={item.isDisabled} value={item.value} color={item.color} key={itemCount}
+                            isDisabled={item.isDisabled} value={item.value} color={item.color} key={index}
                         />
                     }
                 })
