@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react"
-import NumpadButton from "../../../shared/ui/numpad-button"
-import { ExampleTypes } from "../../../shared/lib/enums/ExampleTypes"
-import { NumpadColor } from "../../../shared/lib/enums/NumpadColor"
-import { useDispatch, useSelector } from "react-redux"
-import { MainExampleAction } from "../../../shared/lib/enums/actions/MainExampleAction"
-import { IndexForElementAction } from "../../../shared/lib/enums/actions/IndexForElementAction"
-import { LocalRoutes } from "../../../shared/config"
-import { processingUserResponse } from "../../../widgets/numpad/lib/helpers/processingUserResponse"
+import NumpadButton from "@/shared/ui/numpad-button"
+import { ExampleTypes } from "@/shared/lib/enums/ExampleTypes"
+import { NumpadColor } from "@/shared/lib/enums/NumpadColor"
+import { useDispatch } from "react-redux"
+import { MainExampleAction } from "@/shared/lib/enums/actions/MainExampleAction"
+import { LocalRoutes } from "@/shared/config"
+import { processingUserResponse } from "@/widgets/numpad/lib/helpers/processingUserResponse"
 import './index.css'
-import { sendOrderDataInServer } from "../lib/api/sendOrderDataInServer"
+import { useTypedSelector } from "@/shared/lib/hooks/useTypedSelector"
+import { stateIsEmpty } from "../lib/helpers/stateIsEmpty"
+import { lastSymbolIsSign } from "../lib/helpers/lastSymbolIsSign"
+import { lastSymbolIsInt } from "../lib/helpers/lastSymbolIsInt"
+import { lastSymbolIsParenthesis } from "../lib/helpers/lastSymbolIsParenthesis"
+import { lastSymbolIsCursor } from "../lib/helpers/lastSymbolIsCursor"
+import { stateHaveSign } from "../lib/helpers/stateHaveSign"
+import { addElementInExample } from "../lib/helpers/addElementInExample"
+import { Dispatch, UnknownAction } from "redux"
+import { deleteElementInExample } from "../lib/helpers/deleteElementInExample"
+import { getStateWithOutCursor } from "../lib/helpers/getStateWithOutCursor"
 
 interface NumpadNumbersProps {
     isVisible: boolean,
@@ -17,8 +26,14 @@ interface NumpadNumbersProps {
 }
 
 interface INumpadButtonsData {
-    onClick: Function,
-    type?: ExampleTypes | string,
+    onClick: (
+        type?: ExampleTypes,
+        value?: string,
+        indexForElement?: number,
+        focusElement?: HTMLElement,
+        dispatch?: Dispatch<UnknownAction>
+    ) => void,
+    type?: ExampleTypes,
     color?: NumpadColor,
     className?: string,
     isDisabled?: boolean,
@@ -28,9 +43,9 @@ interface INumpadButtonsData {
 export const NumpadNumbers: React.FC<NumpadNumbersProps> = ({ isVisible, page, getElementForInsertData }) => {
     const
         dispatch = useDispatch(),
-        focusElement = useSelector((state: any) => state.FocusElementReducer.element) as HTMLElement,
-        indexForElement = useSelector((state: any) => state.IndexForElementReducer.value),
-        exampleData: Array<any> = useSelector((state: any) => state.MainExampleReducer.data),
+        focusElement = useTypedSelector(state => state.FocusElementReducer.element) as HTMLElement,
+        indexForElement = useTypedSelector(state => state.IndexForElementReducer.value),
+        exampleData: Array<any> = useTypedSelector(state => state.MainExampleReducer.data),
         [divMulPlusPointState, setDivMulPlusPointState] = useState<boolean>(false),
         [minusState, setMinusState] = useState<boolean>(false),
         [zeroState, setZeroState] = useState<boolean>(false),
@@ -54,79 +69,43 @@ export const NumpadNumbers: React.FC<NumpadNumbersProps> = ({ isVisible, page, g
             {onClick: deleteElementInExample, color: NumpadColor.RED, value: 'C'},
             {onClick: addElementInExample, type: ExampleTypes.INT, className: 'zero', isDisabled: zeroState, value: '0'},
             {onClick: addElementInExample, type: ExampleTypes.SIGN, isDisabled: divMulPlusPointState, value: '.'},
-            {onClick: sendOrderDataInServer, type: ExampleTypes.SIGN, isDisabled: minusState, value: '-'},
+            {onClick: addElementInExample, type: ExampleTypes.SIGN, isDisabled: minusState, value: '-'},
             {onClick: () => {}, color: NumpadColor.GREEN, value: 'OK'},
         ]
     
-    let itemCount = 100
-
     useEffect(() => {
-        // const data = getElementForInsertData(exampleData, focusElement)
-        
-        // if (!stateIsEmpty(data)) {
-        //     setDigitalState(false);
-        //     (!lastSymbolIsSign(data) && !lastSymbolIsInt(data) && !lastSymbolIsParenthesis(data) && !lastSymbolIsCursor(data)) ? setDigitalState(true): setDigitalState(false)
-        // }
-        // else setDigitalState(false);
+        const data = getStateWithOutCursor(getElementForInsertData(exampleData, focusElement))
 
-        // (stateIsEmpty(data) || lastSymbolIsSign(data)) ? setDivMulPlusPointState(true): setDivMulPlusPointState(false);
-        // (!stateIsEmpty(data) && lastSymbolIsSign(data)) ? setMinusState(true): setMinusState(false);
-        // (stateIsEmpty(data)) ? setZeroState(true): setZeroState(false);
+        if (!stateIsEmpty(data)) {
+            setDigitalState(false);
+            (!lastSymbolIsSign(data) && !lastSymbolIsInt(data) && !lastSymbolIsParenthesis(data) && !lastSymbolIsCursor(data)) ? setDigitalState(true): setDigitalState(false)
+        }
+        else setDigitalState(false);
+
+        (stateIsEmpty(data) || lastSymbolIsSign(data)) ? setDivMulPlusPointState(true): setDivMulPlusPointState(false);
+        (!stateIsEmpty(data) && lastSymbolIsSign(data)) ? setMinusState(true): setMinusState(false);
+        (stateIsEmpty(data)) ? setZeroState(true): setZeroState(false);
        
-        // (data.length < 3 || !stateHaveSign(data) || lastSymbolIsSign(data)) ? setEqualsState(true): setEqualsState(false)
+        (data.length < 3 || !stateHaveSign(data) || lastSymbolIsSign(data)) ? setEqualsState(true): setEqualsState(false)
     }, [exampleData, focusElement])
-
-    function addElementInExample (type: ExampleTypes, value: string) {
-        const element = {
-            type,
-            value: (type === ExampleTypes.INT) ? Number(value): value,
-            index: indexForElement
-        }
-
-        if (focusElement !== null) {
-            const
-                indexForElementInserted = focusElement.getAttribute('data-parrent-index'),
-                placeForElementInserted = focusElement.getAttribute('data-place')
-
-            dispatch({
-                type: MainExampleAction.INSERT_ELEMENT_IN_EXAMPLE_BY_INDEX,
-                data: element,
-                indexOfElementInserted: Number(indexForElementInserted),
-                placeOfElementInserted: placeForElementInserted
-            })
-        }
-        else dispatch({ type: MainExampleAction.INSERT_ELEMENT_IN_EXAMPLE, data: element })
-
-        dispatch({ type: IndexForElementAction.INDEX_INCREMENT })
-    }
-
-    function deleteElementInExample () {
-        if (focusElement !== null) {
-            const
-                indexForElementInserted = focusElement.getAttribute('data-parrent-index'),
-                placeForElementInserted = focusElement.getAttribute('data-place')
-
-            dispatch({
-                type: MainExampleAction.DELETE_ELEMENT_IN_EXAMPLE_BY_INDEX,
-                indexOfElementInserted: Number(indexForElementInserted),
-                placeOfElementInserted: placeForElementInserted
-            })
-        }
-        else dispatch({ type: MainExampleAction.DELETE_ELEMENT_IN_EXAMPLE })
-    }
 
     function deleteExample () { dispatch({ type: MainExampleAction.DELETE_EXAMPLE }) }
 
     return (
         <div className={"numpad__numbers numpad__numbers_" + ((isVisible) ? 'visible': 'hidden')}>
             {
-                numpadButtonsData.map(item => {
-                    itemCount++
-                    if (item.value !== 'OK') return <NumpadButton key={itemCount} isDisabled={item.isDisabled} onClick={() => item.onClick(item.type, item.value)} color={item.color} className={item.className} value={item.value} />
+                numpadButtonsData.map((item, index) => {
+                    if (item.value !== 'OK') {
+                        return <NumpadButton
+                            key={index} isDisabled={item.isDisabled}
+                            color={item.color} className={item.className} value={item.value}
+                            onClick={() => item.onClick( item.type, item.value, indexForElement, focusElement, dispatch )}
+                        />
+                    }
                     else {
                         return <NumpadButton 
                             onClick={() => processingUserResponse(exampleData, indexForElement, page, dispatch)}
-                            key={itemCount} isDisabled={item.isDisabled} color={item.color} className={item.className} value={item.value}
+                            key={index} isDisabled={item.isDisabled} color={item.color} className={item.className} value={item.value}
                         />
                     }
                 })
