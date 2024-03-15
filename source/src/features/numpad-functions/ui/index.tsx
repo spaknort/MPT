@@ -17,6 +17,7 @@ import { LocalRoutes } from "../../../shared/config"
 import './index.css'
 import { processingUserResponse } from "../../../widgets/numpad/lib/helpers/processingUserResponse"
 import { lastSymbolIsParenthesis } from "../lib/helpers/lastSymbolIsParenthesis"
+import { useTypedSelector } from "../../../shared/lib/hooks/useTypedSelector"
 
 interface NumpadFunctionsProps {
     isVisible: boolean,
@@ -37,9 +38,9 @@ interface INumpadButtonsData {
 export const NumpadFunctions: React.FC<NumpadFunctionsProps> = ({ isVisible, page, getElementForInsertData }) => {
     const
         dispatch = useDispatch(),
-        focusElement = useSelector((state: any) => state.FocusElementReducer.element) as HTMLElement,
-        indexForElement = useSelector((state: any) => state.IndexForElementReducer.value),
-        exampleData = useSelector((state: any) => state.MainExampleReducer.data),
+        focusElement = useTypedSelector(state => state.FocusElementReducer.element) as HTMLElement,
+        indexForElement = useTypedSelector(state => state.IndexForElementReducer.value),
+        exampleData = useTypedSelector(state => state.MainExampleReducer.data),
         indexForElementInserted = focusElement?.getAttribute('data-parrent-index'),
         placeForElementInserted = focusElement?.getAttribute('data-place'),
         [functionState, setFunctionState] = useState<boolean>(false),

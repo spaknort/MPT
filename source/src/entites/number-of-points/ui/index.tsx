@@ -14,7 +14,7 @@ export const NumberOfPoints: React.FC<NumberOfPointsProps> = ({ value }) => {
     return (
         <div className="number-of-points">
             <span className={ "number-of-points__count number-of-points__count_" + theme }>{ (value === undefined) ? Number(data): Number(value) }</span>
-            <img src="https://drive.google.com/uc?export=view&id=13-0PiDCZfzMfklRV3qVuLrafX9djz8B7" alt="Coin" className="number-of-points__coin" />
+            <img src="https://lh3.google.com/u/0/d/13-0PiDCZfzMfklRV3qVuLrafX9djz8B7" alt="Coin" className="number-of-points__coin" />
         </div>
     )
 }

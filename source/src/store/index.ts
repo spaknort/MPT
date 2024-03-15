@@ -25,4 +25,5 @@ const rootReducer = combineReducers({
     TrigerForLocalExampleReducer
 })
 
+export type RootType = ReturnType<typeof rootReducer>
 export const store = createStore(rootReducer)
