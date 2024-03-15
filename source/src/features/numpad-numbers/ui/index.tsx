@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import NumpadButton from "@/shared/ui/numpad-button"
 import { ExampleTypes } from "@/shared/lib/enums/ExampleTypes"
 import { NumpadColor } from "@/shared/lib/enums/NumpadColor"
-import { useDispatch } from "react-redux"
+import { TypedUseSelectorHook, useDispatch } from "react-redux"
 import { MainExampleAction } from "@/shared/lib/enums/actions/MainExampleAction"
 import { LocalRoutes } from "@/shared/config"
 import { processingUserResponse } from "@/widgets/numpad/lib/helpers/processingUserResponse"
@@ -18,6 +18,7 @@ import { addElementInExample } from "../lib/helpers/addElementInExample"
 import { Dispatch, UnknownAction } from "redux"
 import { deleteElementInExample } from "../lib/helpers/deleteElementInExample"
 import { getStateWithOutCursor } from "@/shared/lib/helpers/getStateWithOutCursor"
+import { RootType } from "@/store"
 
 interface NumpadNumbersProps {
     isVisible: boolean,

@@ -9,7 +9,7 @@ interface SwitchProps {
 const Switch: React.FC<SwitchProps> = ({ type, onClick }) => {
     return (
         <label className="switch">
-            <input onClick={onClick} checked={ type } type="checkbox" />
+            <input onClick={onClick} readOnly checked={ type } type="checkbox" />
             <span className="slider round"></span>
         </label>
     )

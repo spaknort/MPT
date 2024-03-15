@@ -21,6 +21,10 @@ export default function webpackRules (options: webpackBuildOptions): webpack.Con
             exclude: /node_modules/
         },
         {
+            test: /\.css$/,
+            use: [MiniCssExtractPlugin.loader, 'css-loader']
+        },
+        {
             test: /\.sass?$/,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
         },
@@ -33,6 +37,10 @@ export default function webpackRules (options: webpackBuildOptions): webpack.Con
                     icon: true
                 }
             }],
+        },
+        {
+            test: /\.(mp3|ogg|wav)$/,
+            use: 'file-loader'
         }
     ]
 }

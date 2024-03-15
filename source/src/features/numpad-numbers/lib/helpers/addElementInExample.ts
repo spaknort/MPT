@@ -1,6 +1,9 @@
 import { ExampleTypes } from "@/shared/lib/enums/ExampleTypes"
+import { SoundTypes } from "@/shared/lib/enums/SoundTypes"
 import { IndexForElementAction } from "@/shared/lib/enums/actions/IndexForElementAction"
 import { MainExampleAction } from "@/shared/lib/enums/actions/MainExampleAction"
+import { checkSoundState } from "@/shared/lib/helpers/checkSoundState"
+import { playSound } from "@/shared/lib/helpers/playSound"
 import { Dispatch, UnknownAction } from "redux"
 
 export function addElementInExample (
@@ -30,5 +33,7 @@ export function addElementInExample (
     }
     else dispatch({ type: MainExampleAction.INSERT_ELEMENT_IN_EXAMPLE, data: element })
 
+    
+    if (checkSoundState()) playSound(SoundTypes.DEFAULT)
     dispatch({ type: IndexForElementAction.INDEX_INCREMENT })
 }

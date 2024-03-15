@@ -1,0 +1,5 @@
+declare module '*.sass'
+declare module '*.module.sass'
+declare module '*.ogg'
+declare module '*.mp3'
+declare module '*.wav'
